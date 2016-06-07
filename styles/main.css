@@ -1,0 +1,51 @@
+h1 {
+  margin-top: 0;
+  text-align: center;
+  font-family: arial;
+  padding-top: 20px;
+}
+
+body {
+  background-color: #f1f1f1;
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#court {
+  background-color: white;
+  position: relative;
+  width: 800px;
+  height: 600px;
+  margin: 0 auto;
+}
+
+.paddle {
+  position: absolute;
+  border-radius: 0px;
+  width: 100px;
+  height: 20px;
+  top: 580px;
+}
+
+#paddleA {
+  background: red;
+  left: 0px;
+}
+
+#paddleB {
+  background: blue;
+  left: 700px;
+}
+
+#ball {
+  position: absolute;
+  top: 0;
+  /*left: 390px;*/
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background: black;
+}
