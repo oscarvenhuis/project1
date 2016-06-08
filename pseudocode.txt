@@ -1,0 +1,12 @@
+Create paddle A and B
+Create ball
+Create playing area
+Move paddles according to user input
+Drop ball
+Bounce Ball if it hits racket
+Ball bounces off edges within the playing area
+If ball hits a paddle than switch player
+If ball misses paddle than other player scores
+Update display
+First player who wins 5 times wins game
+Reset score and play new game

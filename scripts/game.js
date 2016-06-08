@@ -1,3 +1,29 @@
+// GAME
+// create paddle A and B,
+// create ball,
+// create playing area,
+// move paddles according to user input,
+// drop ball,
+// bounce Ball if it hits racket,
+// ball bounces off edges within the playing area,
+// if ball hits a paddle than switch player,
+// if ball misses paddle than other player scores,
+// update display,
+// first player who wins 5 times wins game,
+// reset score and play new game
+
+
+// BOUNCE/COLLIDE
+// If ball hits paddles,
+// invert the y-speed vector ball,
+// increment the points, play the collision sound,
+// save collision's position,
+// set variable,
+// change the score multiplier
+
+
+
+
 $(document).ready(function(){
   // Gameloop
   var gameloop = null;
@@ -114,17 +140,46 @@ $(document).ready(function(){
 
   };
 
-  var moveBall = function () {
-    var position = $ball.position();
-    $ball.css({
-      top:  position.top + verticalMove,
-      left: position.left + horizontalMove
-    });
-  };
+// gravity
+// set x position
+// set y position
+// set starting gravity speed
+// set increase of speed for each frame
+// calculate trajectory
+// loop until it hits the paddle
+//
+// function gravity(width, height, color, x, y, type) {
+//     this.type = type;
+//     this.width = width;
+//     this.height = height;
+//     this.x = x;
+//     this.y = y;
+//     this.speedX = 0;
+//     this.speedY = 0;
+//     this.gravity = 0.05;
+//     this.gravitySpeed = 0;
+//     this.update = function() {
+
+//     }
+// new position of ball
+//     this.newPos = function() {
+//         this.gravitySpeed += this.gravity;
+//         this.x += this.speedX;
+//         this.y += this.speedY + this.gravitySpeed;
+//     }
+// }
+
+   var moveBall = function () {
+     var position = $ball.position();
+     $ball.css({
+       top:  position.top + verticalMove,
+       left: position.left + horizontalMove
+     });
+   };
 
   var startGame = function () {
     // Main loop of the game
-    // Set main loop frame rate (60 fps the best)
+    // Set main loop frame rate (60 fps the best). Fps stands for 'frames per second'
     gameloop = setInterval(function(){
       movePaddles();
       moveBall();
