@@ -1,8 +1,16 @@
+@font-face {
+   font-family: pixelfont;
+   src: url(Silom.ttf);
+}
+
+
 h1 {
   margin-top: 0;
   text-align: center;
-  font-family: georgia;
+  font-family: pixelfont;
   padding-top: 20px;
+  padding-bottom: 0px;
+  font-size: 25px;
 }
 
 body {
@@ -13,42 +21,76 @@ body {
   overflow: hidden;
 }
 
+footer {
+  font-family: pixelfont;
+  text-align: center;
+  padding-top: 575px;
+}
+
 #court {
   background-color: white;
   position: relative;
   width: 1000px;
   height: 600px;
   margin: 0 auto;
+  background-image: url(../images/WDF_2469506.png);
+  border: 2px;
+  outline-color: black
 }
+
 
 .paddle {
   position: absolute;
   border-radius: 0px;
   width: 100px;
-  height: 20px;
-  top: 580px;
+  height: 15px;
+  top: 585px;
 }
 
 #paddleA {
-  background: red;
+  background: #0AFF0A;
   left: 0px;
 }
 
 #paddleB {
-  background: blue;
+  background: #FF0A84;
   left: 700px;
 }
 
 #ball {
   position: absolute;
-  top: 280px;
+  top: 25px;
   left: 380px;
-  width: 57px;
-  height: 100px;
+  width: 104px;
+  height: 200px;
   border-radius: 10px;
   /*background: black;*/
   background-image: url(../images/cat.png);
-  background-size: 57px 100px;
+  background-size: 104px 200px;
+}
 
+.score {
+  position: absolute;
+  display: inline-block;
+  color: white;
+  font-family: pixelfont;
+  font-size: 60px;
+  margin-right: 30px;
 
+}
+
+.scoreA {
+  position: absolute;
+  opacity: 1;
+  color: #0AFF0A;
+  margin-left: 50px;
+  margin-top: 25px;
+}
+
+.scoreB {
+  position: absolute;
+  opacity: 1;
+  color: #FF0A84;
+  margin-left: 905px;
+  margin-top: 25px;
 }

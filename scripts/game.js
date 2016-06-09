@@ -64,10 +64,10 @@ $(document).ready(function(){
 
   // Ball
   var $ball          = $("#ball");
-  var verticalMove   = 5;
-  var horizontalMove = 5;
-  var ballHeight     = 100;
-  var ballWidth      = 57;
+  var verticalMove   = 4;
+  var horizontalMove = 4;
+  var ballHeight     = 200;
+  var ballWidth      = 104;
   var lastContact    = '';
 
   //Controls
@@ -89,6 +89,8 @@ $(document).ready(function(){
   // Each players starting score
   var score1 = 0
   var score2 = 0
+
+
 
   var bindKeypress = function() {
     // Store in for keyboard knowledge
@@ -170,6 +172,11 @@ $(document).ready(function(){
     }
   };
 
+   // Meow sound effect
+  var meow = new buzz.sound("./sound/animal_cat_meow.mp3", { preload: true, loop: false });
+  var boing = new buzz.sound("./sound/beep9.mp3", { preload: true, loop: false });
+
+
   // ball positioning
   var moveBall = function (){
     // ball boundery collision
@@ -179,10 +186,12 @@ $(document).ready(function(){
     var ballLeft = position.left;
     var ballRight= position.left + ballWidth;
 
+
     // boundary collision
     if (ballTop <= yMin && lastContact != "topBoundary") {
       verticalMove = -verticalMove;
       lastContact = "topBoundary";
+      boing.play();
     }
 
     if (ballBot >= yMax && lastContact != "botBoundary") {
@@ -199,12 +208,15 @@ $(document).ready(function(){
     if (ballLeft <= xMin && lastContact != "leftBoundary") {
       horizontalMove = -horizontalMove;
       lastContact = "leftBoundary";
+      boing.play();
     }
 
     if (ballRight >= xMax && lastContact != "rightBoundary") {
       horizontalMove = -horizontalMove;
       lastContact = "rightBoundary";
+      boing.play();
     }
+
 
     // paddleA collision
     var paddleAPosition = $paddleA.position();
@@ -216,7 +228,9 @@ $(document).ready(function(){
     if (ballLeft <= paddleARight && ballRight >= paddleALeft && ballTop <= paddleABot && ballBot >= paddleATop && lastContact !== 'paddleA') {
       verticalMove = -verticalMove;
       lastContact = 'paddleA';
+      meow.play();
     }
+
 
     // paddleB collision
     var paddleBPosition = $paddleB.position();
@@ -228,6 +242,7 @@ $(document).ready(function(){
     if (ballLeft <= paddleBRight && ballRight >= paddleBLeft && ballTop <= paddleBBot && ballBot >= paddleBTop && lastContact !== 'paddleB') {
       verticalMove = -verticalMove;
       lastContact = 'paddleB';
+      meow.play();
     }
 
     $ball.css({
