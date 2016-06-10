@@ -58,14 +58,14 @@ $(document).ready(function(){
   // Players 1 & 2
   var $paddleA     = $("#paddleA");
   var $paddleB     = $("#paddleB");
-  var paddleSpeed  = 5;
+  var paddleSpeed  = 7;
   var paddleHeight = 15;
   var paddleWidth  = 100;
 
   // Ball
   var $ball          = $("#ball");
-  var verticalMove   = 4;
-  var horizontalMove = 4;
+  var verticalMove   = -4;
+  var horizontalMove = -4;
   var ballHeight     = 200;
   var ballWidth      = 104;
   var lastContact    = '';
@@ -87,10 +87,13 @@ $(document).ready(function(){
   var winScore = 5;
 
   // Each players starting score
-  var score1 = 0
-  var score2 = 0
+  var scoreA = 0;
+  var scoreB = 0;
 
+  var turn   = 'player1';
 
+  var party = new buzz.sound("./sound/party_time.mp3", { preload: true, loop: false });
+  party.play();
 
   var bindKeypress = function() {
     // Store in for keyboard knowledge
@@ -172,9 +175,10 @@ $(document).ready(function(){
     }
   };
 
-   // Meow sound effect
+   // Sound effect
   var meow = new buzz.sound("./sound/animal_cat_meow.mp3", { preload: true, loop: false });
   var boing = new buzz.sound("./sound/beep9.mp3", { preload: true, loop: false });
+  var boing2 = new buzz.sound("./sound/attack.mp3", {preload: true, loop: false });
 
 
   // ball positioning
@@ -197,12 +201,23 @@ $(document).ready(function(){
     if (ballBot >= yMax && lastContact != "botBoundary") {
        verticalMove = -verticalMove;
       lastContact = "botBoundary";
+       boing2.play();
+
       // clearInterval(gameloop);
       // check winner and add score
       // reset the horizontal and vertical move to default
       // reset lastContact to default
       // reset the cat position
       // start gameloop
+      if (turn === 'player1') {
+        scoreA++;
+        $(".scoreA").text(scoreA);
+
+      } else {
+        scoreB++;
+        $(".scoreB").text(scoreB);
+
+      }
     }
 
     if (ballLeft <= xMin && lastContact != "leftBoundary") {
@@ -225,9 +240,10 @@ $(document).ready(function(){
     var paddleALeft     = paddleAPosition.left;
     var paddleARight    = paddleAPosition.left + paddleWidth;
 
-    if (ballLeft <= paddleARight && ballRight >= paddleALeft && ballTop <= paddleABot && ballBot >= paddleATop && lastContact !== 'paddleA') {
+    if (ballLeft <= paddleARight && ballRight >= paddleALeft && ballTop <= paddleABot && ballBot >= paddleATop && lastContact !== 'paddleA' && turn === 'player1') {
       verticalMove = -verticalMove;
       lastContact = 'paddleA';
+      turn = 'player2';
       meow.play();
     }
 
@@ -239,9 +255,10 @@ $(document).ready(function(){
     var paddleBLeft     = paddleBPosition.left;
     var paddleBRight    = paddleBPosition.left + paddleWidth;
 
-    if (ballLeft <= paddleBRight && ballRight >= paddleBLeft && ballTop <= paddleBBot && ballBot >= paddleBTop && lastContact !== 'paddleB') {
+    if (ballLeft <= paddleBRight && ballRight >= paddleBLeft && ballTop <= paddleBBot && ballBot >= paddleBTop && lastContact !== 'paddleB' && turn === 'player2') {
       verticalMove = -verticalMove;
       lastContact = 'paddleB';
+      turn = 'player1';
       meow.play();
     }
 
